@@ -10,8 +10,8 @@ module Geetest
     end
 
     def validate(challenge = '', validate = '', sec_code = '')
-      if validate == Digest::MD5.hexdigest(Config[:key], + 'geetest' + challenge)
-        back = post(Config[:uri], seccode: sec_code) rescue ''
+      if validate == Digest::MD5.hexdigest(Config.settings[:key], + 'geetest' + challenge)
+        back = post(Config.settings[:uri], seccode: sec_code) rescue ''
         return back == Digest::MD5.hexdigest(sec_code)
       end
       false
