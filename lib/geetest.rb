@@ -9,9 +9,13 @@ module Geetest
       Config.initialize_connect(opts)
     end
 
+    def code
+      "#{Config.settings[:get_uri]}?gt=#{Config.settings[:id]}"
+    end
+
     def validate(challenge = '', validate = '', sec_code = '')
       if validate == Digest::MD5.hexdigest(Config.settings[:key], + 'geetest' + challenge)
-        back = post(Config.settings[:uri], seccode: sec_code) rescue ''
+        back = post(Config.settings[:valid_uri], seccode: sec_code) rescue ''
         return back == Digest::MD5.hexdigest(sec_code)
       end
       false

@@ -4,11 +4,13 @@ module Geetest
   module Config
     class << self
       DEFAULT_OPTIONS = {
-          :uri      => 'http://api.geetest.com/validate.php',
-          :key      => nil
+          :get_uri        => 'http://api.geetest.com/get.php',
+          :valid_uri      => 'http://api.geetest.com/validate.php',
+          :id             => nil,
+          :key            => nil
       }
 
-      REQUIRED_OPTION_KEYS = [:key]
+      REQUIRED_OPTION_KEYS = [:get_uri, :valid_uri, :id, :key]
 
       attr_reader :settings
 
