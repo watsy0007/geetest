@@ -23,6 +23,10 @@ module Geetest
       back == Digest::MD5.hexdigest(sec_code)
     end
 
+    def version
+      Version::VERSION
+    end
+
     private
 
     def post(uri, data)
