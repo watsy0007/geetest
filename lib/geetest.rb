@@ -24,7 +24,7 @@ module Geetest
     end
 
     def version
-      Version::VERSION
+      Version
     end
 
     private
