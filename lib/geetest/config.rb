@@ -3,6 +3,7 @@ require 'tmpdir'
 module Geetest
   module Config
     class << self
+
       DEFAULT_OPTIONS = {
           :get_uri        => 'http://api.geetest.com/get.php',
           :valid_uri      => 'http://api.geetest.com/validate.php',
@@ -29,5 +30,5 @@ module Geetest
         end
       end
     end
-  end
-end
+  end # Config
+end # Module Geetest
