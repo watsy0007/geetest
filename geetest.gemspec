@@ -5,7 +5,7 @@ require 'geetest/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "geetest"
-  spec.version       = Geetest::VERSION.to_s
+  spec.version       = Geetest::Version.to_s
   spec.authors       = ["yanwang"]
   spec.email         = ["watsy0007@gmail.com"]
 
