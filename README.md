@@ -22,7 +22,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+add this line to your action :
+
+    @code_url = Geetest.code
+    
+and then add to view :
+
+    <%= form_tag '/check', remote: true do %>
+        <%= javascript_tag '', src: @code_url %>
+        <%= button_tag 'submit' %>
+    <% end %>
+    
+and then add action :
+
+    def check
+      if Geetest.validate params
+        redirect_to :success
+      end
+    end
+
+for example, see [geetest-demo][1]
 
 ## Development
 
@@ -39,3 +58,5 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+
+[1]:https://github.com/watsy0007/geetest-demo.git
