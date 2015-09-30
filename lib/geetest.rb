@@ -18,7 +18,7 @@ module Geetest
       validate = opt['geetest_validate'] ||= nil
       seccode = opt['geetest_seccode'] ||= nil
       return false if challenge.blank? || validate.blank? || seccode.blank?
-      return false if validate != Digest::MD5.hexdigest(Config.settings[:key], + 'geetest' + challenge)
+      return false if validate != Digest::MD5.hexdigest("#{Config.settings[:key]}geetest#{challenge}")
       back = post(Config.settings[:valid_uri], seccode: sec_code) rescue ''
       back == Digest::MD5.hexdigest(sec_code)
     end
