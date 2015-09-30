@@ -13,12 +13,14 @@ module Geetest
       "#{Config.settings[:get_uri]}?gt=#{Config.settings[:id]}"
     end
 
-    def validate(challenge = '', validate = '', sec_code = '')
-      if validate == Digest::MD5.hexdigest(Config.settings[:key], + 'geetest' + challenge)
-        back = post(Config.settings[:valid_uri], seccode: sec_code) rescue ''
-        return back == Digest::MD5.hexdigest(sec_code)
-      end
-      false
+    def validate(opt)
+      challenge = opt['geetest_challenge'] ||= nil
+      validate = opt['geetest_validate'] ||= nil
+      seccode = opt['geetest_seccode'] ||= nil
+      return false if challenge.blank? || validate.blank? || seccode.blank?
+      return false if validate != Digest::MD5.hexdigest(Config.settings[:key], + 'geetest' + challenge)
+      back = post(Config.settings[:valid_uri], seccode: sec_code) rescue ''
+      back == Digest::MD5.hexdigest(sec_code)
     end
 
     private
